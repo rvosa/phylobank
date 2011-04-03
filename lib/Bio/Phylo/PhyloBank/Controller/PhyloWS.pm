@@ -27,6 +27,27 @@ sub index :Path :Args(0) {
     $c->response->body('Matched Bio::Phylo::PhyloBank::Controller::PhyloWS in PhyloWS.');
 }
 
+=head2 find
+
+=cut
+
+sub find :Path('find') :Args(0) {
+    my ( $self, $c ) = @_;
+    my $parameters = $c->request->parameters;
+    my $query = $parameters->{'query'};
+    $c->response->body('Search query "'.$query.'" to be executed by '.ref($self));
+}
+
+=head2 lookup
+
+=cut
+
+sub lookup :LocalRegex('^TB2:(.+)') :Args(0) {
+    my ( $self, $c ) = @_;
+    my $captures = $c->request->captures;
+    my ($id) = @{ $captures };
+    $c->response->body('Lookup of '.$id.' to be executed by '.ref($self));
+}
 
 =head1 AUTHOR
 

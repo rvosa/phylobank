@@ -2,7 +2,7 @@ package Bio::Phylo::PhyloBank::Controller::PhyloWS::Matrix;
 use Moose;
 use namespace::autoclean;
 
-BEGIN {extends 'Catalyst::Controller'; }
+BEGIN {extends 'Bio::Phylo::PhyloBank::Controller::PhyloWS'; }
 
 =head1 NAME
 

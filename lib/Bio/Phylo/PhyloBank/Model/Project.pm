@@ -3,6 +3,8 @@ use base 'Catalyst::Model::Adaptor';
 
 __PACKAGE__->config( class => 'Bio::Phylo::Project' );
 
+sub mangle_arguments {}
+
 =head1 NAME
 
 Bio::Phylo::PhyloBank::Model::Project - Catalyst Model

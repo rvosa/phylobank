@@ -42,16 +42,33 @@ sub find :Path('find') :Args(0) {
     $c->response->body('Search query "'.$query.'" to be executed by '.ref($self));
 }
 
+=head2 template
+
+=cut
+
+sub template {
+    my ( $self, $c ) = @_;
+    my $class = ref $self;
+    $class =~ s/.+://;
+    $c->config->{$class};
+}
+
 =head2 lookup
 
 =cut
 
-sub lookup :LocalRegex('^TB2:(.+)') :Args(0) {
+sub lookup :LocalRegex('^(TB2:.+)') :Args(0) {
     my ( $self, $c ) = @_;
     my $captures = $c->request->captures;
     my ($id) = @{ $captures };
-    my $model = $c->model('Study')->project;
-    $c->response->body('Lookup of '.$id.' to be executed by '.ref($self).' to return a '.ref($model));
+    $c->stash->{project} = $c->model('Study')->project;
+    $c->stash->{project}->clear();
+    $c->stash->{project}->set_datasource(
+        '-file'   => $c->config->{filestore} . $id . '.js',
+        '-format' => 'json'
+    );
+    $c->stash->{template} = $self->template($c);
+    $c->forward( $c->view('HTML') );
 }
 
 =head1 AUTHOR

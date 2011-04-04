@@ -57,7 +57,7 @@ sub template {
 
 =cut
 
-sub lookup :LocalRegex('^(TB2:.+)') :Args(0) {
+sub lookup :LocalRegex(^(TB2:.+)$) :Args(0) {
     my ( $self, $c ) = @_;
     my $captures = $c->request->captures;
     my ($id) = @{ $captures };

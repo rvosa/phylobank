@@ -10,7 +10,11 @@ Bio::Phylo::PhyloBank::Controller::PhyloWS - Catalyst Controller
 
 =head1 DESCRIPTION
 
-Catalyst Controller.
+Catalyst Controller. This controller (and its child classes in the subtended
+folder) is dispatched on URIs that uniquely identify objects (taxa, trees,
+matrices or studies), in which case that object will be located and encapsulated
+in the right model to pass to the view. The controller is also dispatched on
+search queries, in which case the Searcher model is passed to the view.
 
 =head1 METHODS
 

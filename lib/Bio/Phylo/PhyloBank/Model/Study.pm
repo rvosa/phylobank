@@ -1,13 +1,19 @@
 package Bio::Phylo::PhyloBank::Model::Study;
-use base 'Catalyst::Model::Adaptor';
+use Moose;
+use Bio::Phylo::Project;
+use namespace::autoclean;
 
-__PACKAGE__->config( class => 'Bio::Phylo::Project' );
+extends 'Catalyst::Model';
 
-sub mangle_arguments {}
+has 'project' => (
+    is  => 'ro',
+    isa => 'Bio::Phylo::Project',
+    default => sub { Bio::Phylo::Project->new },
+);
 
 =head1 NAME
 
-Bio::Phylo::PhyloBank::Model::Study - Catalyst Model
+Bio::Phylo::PhyloBank::Model::StudyModel - Catalyst Model
 
 =head1 DESCRIPTION
 
@@ -23,5 +29,7 @@ This library is free software. You can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut
+
+__PACKAGE__->meta->make_immutable;
 
 1;

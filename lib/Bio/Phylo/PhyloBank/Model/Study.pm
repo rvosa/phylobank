@@ -17,7 +17,11 @@ Bio::Phylo::PhyloBank::Model::StudyModel - Catalyst Model
 
 =head1 DESCRIPTION
 
-Catalyst Model.
+Catalyst Model. This model encapsulates a L<Bio::Phylo::Project> object that
+gets populated by whatever means as specified by the controller (e.g. from a
+database, a file, a string, a url). The model is subsequently passed to whatever
+view is applicable, for example a web page template to described the study, or
+a serializer that represents it in some machine-readable format.
 
 =head1 AUTHOR
 

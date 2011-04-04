@@ -46,7 +46,8 @@ sub lookup :LocalRegex('^TB2:(.+)') :Args(0) {
     my ( $self, $c ) = @_;
     my $captures = $c->request->captures;
     my ($id) = @{ $captures };
-    $c->response->body('Lookup of '.$id.' to be executed by '.ref($self));
+    my $model = $c->model('Study')->project;
+    $c->response->body('Lookup of '.$id.' to be executed by '.ref($self).' to return a '.ref($model));
 }
 
 =head1 AUTHOR

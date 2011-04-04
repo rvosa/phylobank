@@ -6,7 +6,10 @@ use warnings;
 use base 'Catalyst::View::TT';
 
 __PACKAGE__->config(
-    TEMPLATE_EXTENSION => '.tt',
+    INCLUDE_PATH => [
+        Bio::Phylo::PhyloBank->path_to( 'root', 'src' )
+    ],
+    TEMPLATE_EXTENSION => '.tt2',
     render_die => 1,
 );
 
